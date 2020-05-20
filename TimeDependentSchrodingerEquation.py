@@ -25,10 +25,7 @@ mu = 2.5
 for i in range(0,n):
     if(np.abs(x[i]) < a):
         psiR[i] = np.sin(nLevel*np.pi/2/a*(x[i]-a))
-        #psiR[i] = (1/np.sqrt(2*np.pi*(sig**2))) * np.exp(-((x[i]-mu)**2)/(2*(sig**2)))
     else:
-        #psiR[i] = 0.0
-        #psiR[i] = np.exp(-20*(x[i])**2)
         psiR[i] = (1/np.sqrt(2*np.pi*(sig**2))) * np.exp(-((x[i] - mu)**2)/(2*(sig**2)))
     psiI[i] = 0.0
 
@@ -49,7 +46,7 @@ def Vfunc(x):
 for i in range(0,n):
     V[i] = Vfunc(x[i])
 
-# matmul(H,psi) as a loop operation
+# matrix multiplication of (H,psi) as a loop operation
 def Hmul(psi):
     result = np.zeros(n)
     #get curvature
@@ -80,7 +77,6 @@ psi0 = np.concatenate((psiR,psiI))
 sol = odeint(f,psi0,t)
 
 # plot solution
-
 psiR = sol[0][0:n]
 psiI = sol[0][n:2*n]
     
@@ -97,17 +93,14 @@ def animate(i):
     line2.set_ydata(psiI)
     return line0,line1,line2,
 
-ani = animation.FuncAnimation(fig,
-                              animate,
-                              np.arange(0,nt),
-                              interval=1,
-                              blit=True)
+ani = animation.FuncAnimation(fig, animate, np.arange(0,nt), interval=1, blit=True)
 plt.show()
 
 ### suppose you want to determine probability between two values
 ## normalize last time step
 psiRFinal = sol[-1][0:n]
 psiIFinal = sol[-1][n:2*n]
+
 ## trapezoidal rule integration weights
 weight = np.ones(n)
 weight[0]=0.5
