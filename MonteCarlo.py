@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 ##---------- Monte Carlo ---------##
+# Here we want to estimate pi
 
 def p(x): # probability function
     if(x < 0 or x > 1):
@@ -30,5 +31,3 @@ for j in range(0,10):
     integral /= n
 
     print(integral*4) # we're supposed to get pi/4, scale to show pi
-
-
