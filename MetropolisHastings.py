@@ -27,12 +27,6 @@ for i in range(0,5):
     
         xs.append(x)
 
-    #plt.plot(xs)
-    #plt.hist(xs, density = True)
-    #plotx = np.linspace(-5,5,1000)
-    #plt.plot(plotx, p(plotx))
-    #plt.show()
-
     def g(x):
         if(x < 0):
             return 0
@@ -43,4 +37,3 @@ for i in range(0,5):
         integral += g(xs[i])/p(xs[i])
     integral /= n
     print(integral)
-
