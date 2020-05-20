@@ -10,9 +10,9 @@ hbar = 1
 m = 2
 V1 = 100
 V2 = 200
-## we really have a spacing of 2a/(n-3)
+# we really have a spacing of 2a/(n-3)
 hfix = 2*a/(n + 1)
-### make x spread out more
+# make x spread out more
 x = np.linspace(-4*a,4*a,n)
 deltaX = x[1]-x[0]
 
@@ -26,7 +26,7 @@ for i in range(0,n):
         D2[i, i + 1]=1
 D2 /= deltaX**2
 
-## build a V matrix
+# build a V matrix
 def Vfunc(x):
     if(x < -a):
         return V1
@@ -41,7 +41,7 @@ for i in range(0,n):
     V[i,i] = Vfunc(x[i])
     VVec[i] = V[i,i]
 
-## add in V to H
+# add in V to H
 H = -hbar**2/2/m * D2 + V
 val, vec = la.eig(H)
 
@@ -58,4 +58,3 @@ print(np.sort(val)[0:5])
 plt.plot(x,100*vec[:,isort[ishow]])
 plt.plot(x,VVec)
 plt.show()
-
